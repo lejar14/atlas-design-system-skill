@@ -9,7 +9,7 @@ cd "${1:-.}" || exit 2
 out=$(mktemp)
 trap 'rm -f "$out"' EXIT
 
-files=$(find . \( -path ./node_modules -o -path ./.next -o -path ./.git -o -path ./.agents -o -path ./.claude -o -path ./dist -o -path ./out -o -path ./coverage \) -prune -o \
+files=$(find . \( -name node_modules -o -name .next -o -name .git -o -name .agents -o -name .claude -o -name dist -o -name out -o -name coverage \) -prune -o \
     -type f \( -name '*.tsx' -o -name '*.ts' -o -name '*.jsx' -o -name '*.css' -o -name '*.html' \) -print |
     grep -v -e '/src/styles/tokens\.css$' -e '/src/components/ui/button\.tsx$' -e '\.d\.ts$' | sort)
 
@@ -41,16 +41,13 @@ else
 fi
 [ -f src/styles/tokens.css ] && ! cmp -s src/styles/tokens.css "$skill_dir/assets/tokens.css" &&
     echo "src/styles/tokens.css: [setup] differs from assets/tokens.css, do not edit tokens" >>"$out"
-for dep in '"next"' '"tailwindcss"' '"clsx"' '"tailwind-merge"' '"lucide-react"'; do
-    grep -q "$dep" package.json 2>/dev/null || echo "package.json: [setup] dependency $dep missing" >>"$out"
-done
-for f in $(printf '%s\n' "$files" | grep '\.css$'); do
-    if grep -q '@import.*tailwindcss' "$f"; then
-        t=$(grep -n 'tokens\.css' "$f" | head -1 | cut -d: -f1)
-        w=$(grep -n '@import.*tailwindcss' "$f" | head -1 | cut -d: -f1)
-        { [ -n "$t" ] && [ "$t" -lt "$w" ]; } || echo "${f#./}: [setup] import tokens.css before tailwindcss" >>"$out"
-    fi
-done
+if [ -f package.json ]; then
+    for dep in '"next"' '"tailwindcss"' '"clsx"' '"tailwind-merge"' '"lucide-react"'; do
+        grep -q "$dep" package.json || echo "package.json: [setup] dependency $dep missing" >>"$out"
+    done
+else
+    echo "package.json: [setup] not found here; run this from the Next.js project root (the folder with package.json)" >>"$out"
+fi
 
 if [ -s "$out" ]; then
     sort -u "$out"

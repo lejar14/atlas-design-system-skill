@@ -11,7 +11,7 @@ Atlas is not an npm package. Components are source files copied into the user's 
 
 ## Deliverable
 
-Atlas needs Next.js (App Router) with TypeScript and Tailwind CSS v4. Mockups, prototypes, demos and landing pages are real pages under `src/app/`, not static HTML, unless the user explicitly asks for plain HTML. If the project already uses another stack, ask the user once whether to keep it; if they do, keep the tokens and the rules and say the components are an adaptation.
+Atlas needs Next.js (App Router) with TypeScript and Tailwind CSS v4. Mockups, prototypes, demos and landing pages are real pages under `src/app/`, not static HTML, unless the user explicitly asks for plain HTML. The project root is the folder that holds `package.json`; run every command and the checker from there. `create-next-app` refuses a folder that is not empty (this skill's own `.agents/` counts), so write the config files by hand or scaffold elsewhere and move them in; do not hide the project in a subfolder unless the user asks. If the project already uses another stack, ask the user once whether to keep it; if they do, keep the tokens and the rules and say the components are an adaptation.
 
 ## Setup (once per project; skip what already exists; this is the site's Getting started)
 
