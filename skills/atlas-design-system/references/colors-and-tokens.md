@@ -2,9 +2,11 @@
 
 Source: https://atlas-design-system-theta.vercel.app/foundations/color (fetched live). This is the
 full primitive + semantic color set as published on the site. CSS variable names for the primitives
-(e.g. `--primary500`) match Atlas's compiled CSS. Atlas's CSS does **not** ship the *semantic* aliases
-below as variables; `assets/tokens.css` defines them as `--surface-*`, `--text-*`, `--border-*`,
-`--icon-*` (this skill's naming convention).
+(e.g. `--primary500`) are confirmed from Atlas's own Button source code. CSS variable names for the
+*semantic* aliases (surface/typography/border/icon) are **not** exposed anywhere in the static site —
+only their dot-notation names and resolved hex are shown. Treat the semantic var names in this file as
+a reasonable inferred convention (`--surface-*`, `--text-*`, etc.), and if the user has the actual
+`src/styles/tokens.css` from the Atlas repo, prefer that file's real variable names over this guess.
 
 ## Neutral
 
@@ -242,25 +244,18 @@ Two typefaces, used for different jobs — don't mix their purpose:
 - **Manrope** — display only. Use *only* for Display-level styles (marketing/hero headlines), never for
   body copy, form labels, or dense UI text.
 
-Type scale (px sizes, largest to smallest — Atlas tunes each step by eye rather than a fixed ratio, so
-don't assume a mathematical scale when picking an in-between size):
+Type styles (tokens in `assets/tokens.css`, `font` shorthand: weight size/line-height family):
 
-`112 · 56 · 48 · 40 · 32 · 24 · 20 · 18 · 16 · 14 · 12 · 11 · 10`
-
-Composite type tokens (CSS `font` shorthand, weight size/line-height family), from Atlas's CSS:
-
-| Token | Value | Use |
-|---|---|---|
-| `--displayXl` / `--displayLg` / `--displayMd` | 700 112/120 · 56/64 · 48/56 Manrope | Hero/marketing only |
-| `--headingLg` / `--headingMd` / `--headingSm` | 600 40/56 · 32/42 · 24/34 Inter | Page/section headings |
-| `--titleMd` / `--titleSm` | 600 20/28 · 18/25 Inter | Card/dialog titles |
-| `--subtitleMd` / `--subtitleSm` | 600 16/22 · 14/20 Inter | Sub-headings |
-| `--bodyLg` / `--bodyMd` / `--bodySm` | 400 20/28 · 16/22 · 14/20 Inter | Body copy; `--bodySm` = default UI |
-| `--labelMd` / `--labelSm` | 500 14/20 · 12/17 Inter | Labels, buttons |
-| `--captionMd` / `--captionSm` | 400 12/16 · 10/14 Inter | Helper/meta text |
-| `--overlineBase` | 500 11/15 Inter | Overlines |
-
-Letter-spacing primitives (`--letterSpacing0…15`) also exist in `assets/tokens.css`.
+| Token | Value |
+|---|---|
+| displayXl / displayLg / displayMd | 700 112/120, 56/64, 48/56 Manrope |
+| headingLg / headingMd / headingSm | 600 40/56, 32/42, 24/34 Inter |
+| titleMd / titleSm | 600 20/28, 18/25 Inter |
+| subtitleMd / subtitleSm | 600 16/22, 14/20 Inter |
+| bodyLg / bodyMd / bodySm | 400 20/28, 16/22, 14/20 Inter |
+| labelMd / labelSm | 500 14/20, 12/17 Inter |
+| captionMd / captionSm | 400 12/16, 10/14 Inter |
+| overlineBase | 500 11/15 Inter |
 
 OpenType features available in Inter (use selectively, not globally):
 
@@ -272,33 +267,14 @@ OpenType features available in Inter (use selectively, not globally):
 
 ## Size, spacing, radius, elevation
 
-All pixel values alias a primitive `--size*` scale (`--sizeNull` 0, `--size1` … `--size768`,
-`--sizeMax` 999px).
+Everything numeric is aliased from the `--size*` scale (2, 4, 8, 12, 16, 20, 24, 32, 40, 48, 56, 64, 72,
+80, 96, 128, 160, 192, 224, 256, 320, 384, 512, 640, 768, `--sizeMax` 999).
 
-| Step | Spacing token | Radius token | px |
-|---|---|---|---|
-| null | `--spacingNull` | `--borderNull` | 0 |
-| 4xs | `--spacing4xs` | `--border4xs` | 2 |
-| 3xs | `--spacing3xs` | `--border3xs` | 4 |
-| 2xs | `--spacing2xs` | `--border2xs` | 8 |
-| xs | `--spacingXs` | `--borderXs` | 12 |
-| sm | `--spacingSm` | `--borderSm` | 16 |
-| md | `--spacingMd` | `--borderMd` | 20 |
-| lg | `--spacingLg` | `--borderLg` | 24 |
-| xl | `--spacingXl` | `--borderXl` | 32 |
-| 2xl | `--spacing2xl` | `--border2xl` | 40 |
-| 3xl | `--spacing3xl` | `--border3xl` | 48 |
-| 4xl | `--spacing4xl` | `--border4xl` | 56 |
-| 5xl–9xl | `--spacing5xl` 64 · `6xl` 80 · `7xl` 96 · `8xl` 128 · `9xl` 256 | — | |
-| max/full | `--spacingMax` | `--borderFull` | 999 |
-
-Atlas also sets `--radius-md: 8px`, which components (Button) use.
-
-Elevation (`box-shadow`), flips to white-tinted shadows in dark mode:
-
-| Token | Light value | Use |
+| Group | Tokens | Maps to |
 |---|---|---|
-| `--level1` | `0 2px 12px 0 #1c1e260a` | Cards, panels |
-| `--level2` | `0 4px 8px 0 #1c1e260f` | Dropdowns, hovercards |
-| `--level3` | `0 8px 12px 0 #1c1e2614` | Popovers, tooltips |
-| `--level4` | `0 12px 16px 0 #1c1e261f` | Modals, dialogs |
+| Spacing | `--spacing4xs` … `--spacing9xl`, `--spacingMax` | 4xs=2, 3xs=4, 2xs=8, xs=12, sm=16, md=20, lg=24, xl=32, 2xl=40, 3xl=48, 4xl=56, 5xl=64, 6xl=80, 7xl=96, 8xl=128, 9xl=256 |
+| Corner radius | `--border4xs` … `--border4xl`, `--borderFull` | 4xs=2, 3xs=4, 2xs=8, xs=12, sm=16, md=20, lg=24, xl=32, 2xl=40, 3xl=48, 4xl=56 |
+| Component radius | `--radius-md` | 8px (what Button uses) |
+| Elevation | `--level1` … `--level4` | soft shadows, 2/4/8/12px offset; white-alpha in dark theme |
+
+Dark theme: set `data-theme="dark"` on `<html>`; neutrals invert and surface/link tokens switch.

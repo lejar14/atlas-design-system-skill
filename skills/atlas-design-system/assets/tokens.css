@@ -1,283 +1,108 @@
 /**
- * Atlas design tokens, copied from the compiled CSS of the live Atlas site
- * (https://atlas-design-system-theta.vercel.app, fetched 2026-11-12).
- * Import BEFORE Tailwind:  @import "./tokens.css";  @import "tailwindcss";
- * Dark mode: set data-theme="dark" on <html>.
+ * Atlas design tokens, taken from the live Atlas site's compiled CSS
+ * (https://atlas-design-system-theta.vercel.app, checked 2026-11-12): colors, size,
+ * spacing, corner radius, type styles, elevation and the dark theme.
+ *
+ * Usage: import this BEFORE Tailwind in your global stylesheet.
+ *   @import './tokens.css';
+ *   @import "tailwindcss";
  */
 
 :root {
-  --neutral0:#fff;
-  --neutral25:#f8f9fd;
-  --neutral50:#eff1f8;
-  --neutral100:#e1e4ea;
-  --neutral150:#d2d5dc;
-  --neutral200:#bcc0c7;
-  --neutral300:#a2a6ae;
-  --neutral400:#898c94;
-  --neutral500:#70727b;
-  --neutral600:#565961;
-  --neutral700:#404145;
-  --neutral800:#2a2c32;
-  --neutral900:#1c1e26;
-  --neutral950:#101218;
-  --primary50:#ebf5ff;
-  --primary100:#c2cbe4;
-  --primary200:#a5b2d7;
-  --primary300:#7c8fc4;
-  --primary400:#6279b9;
-  --primary500:#3b58a7;
-  --primary600:#365098;
-  --primary700:#2a3e77;
-  --primary800:#20305c;
-  --primary900:#192546;
-  --primary950:#10182d;
-  --secondary50:#e6f5f3;
-  --secondary100:#b0deda;
-  --secondary200:#8acfc8;
-  --secondary300:#54b9af;
-  --secondary400:#33aba0;
-  --secondary500:#009688;
-  --secondary600:#00897c;
-  --secondary700:#006b61;
-  --secondary800:#00534b;
-  --secondary900:#003f39;
-  --secondary950:#00332e;
-  --info50:#f0f7ff;
-  --info100:#d6eaff;
-  --info200:#add4ff;
-  --info300:#75b8ff;
-  --info400:#3d9bff;
-  --info500:#0a7aff;
-  --info600:#0062db;
-  --info700:#004db3;
-  --info800:#003a8a;
-  --info900:#002966;
-  --info950:#001a42;
-  --success50:#f0fdf4;
-  --success100:#dcfce7;
-  --success200:#bbf7d0;
-  --success300:#86efac;
-  --success400:#4ade80;
-  --success500:#22c55e;
-  --success600:#16a34a;
-  --success700:#15803d;
-  --success800:#166534;
-  --success900:#14532d;
-  --success950:#052e16;
-  --warning50:#fffbeb;
-  --warning100:#fef3c7;
-  --warning200:#fde68a;
-  --warning300:#fcd34d;
-  --warning400:#fbbf24;
-  --warning500:#f59e0b;
-  --warning600:#d97706;
-  --warning700:#b45309;
-  --warning800:#92400e;
-  --warning900:#78350f;
-  --warning950:#451a03;
-  --danger50:#fef2f2;
-  --danger100:#fee2e2;
-  --danger200:#fecaca;
-  --danger300:#fca5a5;
-  --danger400:#f87171;
-  --danger500:#ef4444;
-  --danger600:#dc2626;
-  --danger700:#b91c1c;
-  --danger800:#991b1b;
-  --danger900:#7f1d1d;
-  --danger950:#450a0a;
-  --level1:0 2px 12px 0 #1c1e260a;
-  --level2:0 4px 8px 0 #1c1e260f;
-  --level3:0 8px 12px 0 #1c1e2614;
-  --level4:0 12px 16px 0 #1c1e261f;
-  --fontFamiliesManrope:Manrope;
-  --fontFamiliesInter:Inter;
-  --lineHeights0:120px;
-  --lineHeights1:64px;
-  --lineHeights2:56px;
-  --lineHeights3:56px;
-  --lineHeights4:42px;
-  --lineHeights5:34px;
-  --lineHeights6:28px;
-  --lineHeights7:25px;
-  --lineHeights8:22px;
-  --lineHeights9:20px;
-  --lineHeights10:28px;
-  --lineHeights11:22px;
-  --lineHeights12:20px;
-  --lineHeights13:20px;
-  --lineHeights14:17px;
-  --lineHeights15:16px;
-  --lineHeights16:14px;
-  --lineHeights17:15px;
-  --fontWeightsManrope0:700;
-  --fontWeightsInter1:600;
-  --fontWeightsInter2:400;
-  --fontWeightsInter3:500;
-  --fontSize0:10px;
-  --fontSize1:11px;
-  --fontSize2:12px;
-  --fontSize3:14px;
-  --fontSize4:16px;
-  --fontSize5:18px;
-  --fontSize6:20px;
-  --fontSize7:24px;
-  --fontSize8:32px;
-  --fontSize9:40px;
-  --fontSize10:48px;
-  --fontSize11:56px;
-  --fontSize12:112px;
-  --letterSpacing0:-.012em;
-  --letterSpacing1:-.008em;
-  --letterSpacing2:-.006em;
-  --letterSpacing3:-.0022em;
-  --letterSpacing4:-.0021em;
-  --letterSpacing5:-.0019em;
-  --letterSpacing6:-.0017em;
-  --letterSpacing7:-.0014em;
-  --letterSpacing8:-.0011em;
-  --letterSpacing9:-.0006em;
-  --letterSpacing10:.0017em;
-  --letterSpacing11:.0011em;
-  --letterSpacing12:.0006em;
-  --letterSpacing13:0em;
-  --letterSpacing14:.001em;
-  --letterSpacing15:.0005em;
-  --paragraphSpacing0:0;
-  --textCaseNone:none;
-  --textCaseUppercase:uppercase;
-  --textDecorationNone:none;
-  --paragraphIndent0:0px;
-  --size1:1px;
-  --size2:2px;
-  --size4:4px;
-  --size8:8px;
-  --size12:12px;
-  --size16:16px;
-  --size20:20px;
-  --size24:24px;
-  --size32:32px;
-  --size40:40px;
-  --size48:48px;
-  --size56:56px;
-  --size64:64px;
-  --size72:72px;
-  --size80:80px;
-  --size96:96px;
-  --size128:128px;
-  --size160:160px;
-  --size192:192px;
-  --size224:224px;
-  --size256:256px;
-  --size320:320px;
-  --size384:384px;
-  --size512:512px;
-  --size640:640px;
-  --size768:768px;
-  --sizeNull:0;
-  --sizeMax:999px;
-  --displayXl:700 112px/120px Manrope;
-  --displayLg:700 56px/64px Manrope;
-  --displayMd:700 48px/56px Manrope;
-  --headingLg:600 40px/56px Inter;
-  --headingMd:600 32px/42px Inter;
-  --headingSm:600 24px/34px Inter;
-  --titleMd:600 20px/28px Inter;
-  --titleSm:600 18px/25px Inter;
-  --subtitleMd:600 16px/22px Inter;
-  --subtitleSm:600 14px/20px Inter;
-  --bodyLg:400 20px/28px Inter;
-  --bodyMd:400 16px/22px Inter;
-  --bodySm:400 14px/20px Inter;
-  --labelMd:500 14px/20px Inter;
-  --labelSm:500 12px/17px Inter;
-  --captionMd:400 12px/16px Inter;
-  --captionSm:400 10px/14px Inter;
-  --overlineBase:500 11px/15px Inter;
-  --spacingNull:var(--sizeNull);
-  --spacing4xs:var(--size2);
-  --spacing3xs:var(--size4);
-  --spacing2xs:var(--size8);
-  --spacingXs:var(--size12);
-  --spacingSm:var(--size16);
-  --spacingMd:var(--size20);
-  --spacingLg:var(--size24);
-  --spacingXl:var(--size32);
-  --spacing2xl:var(--size40);
-  --spacing3xl:var(--size48);
-  --spacing4xl:var(--size56);
-  --spacing5xl:var(--size64);
-  --spacing6xl:var(--size80);
-  --spacing7xl:var(--size96);
-  --spacing8xl:var(--size128);
-  --spacing9xl:var(--size256);
-  --spacingMax:var(--sizeMax);
-  --borderNull:var(--sizeNull);
-  --border4xs:var(--size2);
-  --border3xs:var(--size4);
-  --border2xs:var(--size8);
-  --borderXs:var(--size12);
-  --borderSm:var(--size16);
-  --borderMd:var(--size20);
-  --borderLg:var(--size24);
-  --borderXl:var(--size32);
-  --border2xl:var(--size40);
-  --border3xl:var(--size48);
-  --border4xl:var(--size56);
-  --borderFull:var(--sizeMax);
-}
+  /* Neutral */
+  --neutral950: #101218;
+  --neutral900: #1C1E26;
+  --neutral800: #2A2C32;
+  --neutral700: #404145;
+  --neutral600: #565961;
+  --neutral500: #70727B;
+  --neutral400: #898C94;
+  --neutral300: #A2A6AE;
+  --neutral200: #BCC0C7;
+  --neutral150: #D2D5DC;
+  --neutral100: #E1E4EA;
+  --neutral50: #EFF1F8;
+  --neutral25: #F8F9FD;
+  --neutral0: #FFFFFF;
 
-:root {
-  --background:var(--neutral0);
-  --foreground:var(--neutral900);
-  --color-primary:var(--primary500);
-  --color-border:var(--neutral100);
-  --radius-md:8px;
-  --surface-base:var(--neutral0);
-  --surface-raised:var(--neutral0);
-  --surface-accent-subtle:var(--primary50);
-  --surface-accent-subtle-border:transparent;
-  --text-accent-subtle-label:var(--primary600);
-  --text-accent-subtle-title:var(--primary900);
-  --text-accent-subtle-body:var(--primary700);
-  --icon-accent-subtle:var(--primary500);
-  --text-link:var(--primary500);
-}
+  /* Primary (brand) */
+  --primary50: #EBF5FF;
+  --primary100: #C2CBE4;
+  --primary200: #A5B2D7;
+  --primary300: #7C8FC4;
+  --primary400: #6279B9;
+  --primary500: #3B58A7;
+  --primary600: #365098;
+  --primary700: #2A3E77;
+  --primary800: #20305C;
+  --primary900: #192546;
+  --primary950: #10182D;
 
-:root[data-theme=dark] {
-  --neutral0:#101218;
-  --neutral25:#1c1e26;
-  --neutral50:#2a2c32;
-  --neutral100:#404145;
-  --neutral150:#565961;
-  --neutral200:#70727b;
-  --neutral300:#898c94;
-  --neutral400:#a2a6ae;
-  --neutral500:#bcc0c7;
-  --neutral600:#d2d5dc;
-  --neutral700:#e1e4ea;
-  --neutral800:#eff1f8;
-  --neutral900:#f8f9fd;
-  --neutral950:#fff;
-  --surface-base:var(--neutral0);
-  --surface-raised:var(--neutral25);
-  --surface-accent-subtle:var(--neutral50);
-  --surface-accent-subtle-border:#ffffff14;
-  --text-accent-subtle-label:var(--info300);
-  --text-accent-subtle-title:var(--neutral900);
-  --text-accent-subtle-body:var(--neutral500);
-  --icon-accent-subtle:var(--primary200);
-  --text-link:var(--primary300);
-  --level1:0 2px 12px 0 #ffffff1a;
-  --level2:0 4px 8px 0 #ffffff29;
-  --level3:0 8px 12px 0 #ffffff38;
-  --level4:0 12px 16px 0 #ffffff4d;
-}
+  /* Secondary */
+  --secondary50: #E6F5F3;
+  --secondary100: #B0DEDA;
+  --secondary200: #8ACFC8;
+  --secondary300: #54B9AF;
+  --secondary400: #33ABA0;
+  --secondary500: #009688;
+  --secondary600: #00897C;
+  --secondary700: #006B61;
+  --secondary800: #00534B;
+  --secondary900: #003F39;
+  --secondary950: #00332E;
 
+  /* Info */
+  --info50: #F0F7FF;
+  --info100: #D6EAFF;
+  --info200: #ADD4FF;
+  --info300: #75B8FF;
+  --info400: #3D9BFF;
+  --info500: #0A7AFF;
+  --info600: #0062DB;
+  --info700: #004DB3;
+  --info800: #003A8A;
+  --info900: #002966;
+  --info950: #001A42;
 
-/* Semantic aliases from the Atlas Color page (surface.*, typography.*, border.*, icon.*).
-   Atlas's own CSS does not ship these as variables; names below are this skill's convention. */
-:root {
+  /* Success */
+  --success50: #F0FDF4;
+  --success100: #DCFCE7;
+  --success200: #BBF7D0;
+  --success300: #86EFAC;
+  --success400: #4ADE80;
+  --success500: #22C55E;
+  --success600: #16A34A;
+  --success700: #15803D;
+  --success800: #166534;
+  --success900: #14532D;
+  --success950: #052E16;
+
+  /* Warning */
+  --warning50: #FFFBEB;
+  --warning100: #FEF3C7;
+  --warning200: #FDE68A;
+  --warning300: #FCD34D;
+  --warning400: #FBBF24;
+  --warning500: #F59E0B;
+  --warning600: #D97706;
+  --warning700: #B45309;
+  --warning800: #92400E;
+  --warning900: #78350F;
+  --warning950: #451A03;
+
+  /* Danger */
+  --danger50: #FEF2F2;
+  --danger100: #FEE2E2;
+  --danger200: #FECACA;
+  --danger300: #FCA5A5;
+  --danger400: #F87171;
+  --danger500: #EF4444;
+  --danger600: #DC2626;
+  --danger700: #B91C1C;
+  --danger800: #991B1B;
+  --danger900: #7F1D1D;
+  --danger950: #450A0A;
+
   /* Semantic — background/surface */
   --surface-neutral-weak: var(--neutral25);
   --surface-neutral-default: var(--neutral50);
@@ -309,6 +134,7 @@
   --surface-danger-default: var(--danger100);
   --surface-danger-medium: var(--danger200);
   --surface-danger-strong: var(--danger800);
+
   /* Semantic — typography */
   --text-neutral-weak: var(--neutral400);
   --text-neutral-medium: var(--neutral600);
@@ -321,6 +147,7 @@
   --text-success: var(--success700);
   --text-warning: var(--warning700);
   --text-danger: var(--danger700);
+
   /* Semantic — border */
   --border-neutral-weak: var(--neutral50);
   --border-neutral-default: var(--neutral100);
@@ -352,6 +179,7 @@
   --border-danger-default: var(--danger200);
   --border-danger-medium: var(--danger300);
   --border-danger-strong: var(--danger800);
+
   /* Semantic — icon */
   --icon-neutral-weak: var(--neutral400);
   --icon-neutral-medium: var(--neutral600);
@@ -364,4 +192,144 @@
   --icon-success: var(--success500);
   --icon-warning: var(--warning500);
   --icon-danger: var(--danger500);
+
+  /* Radius — the only radius variable Atlas defines; Button uses rounded-[var(--radius-md)] */
+  --radius-md: 8px;
+
+  /* Typefaces */
+  --font-ui: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  /* Surfaces and links (light) */
+  --surface-base: var(--neutral0);
+  --surface-raised: var(--neutral0);
+  --surface-accent-subtle: var(--primary50);
+  --surface-accent-subtle-border: transparent;
+  --text-accent-subtle-label: var(--primary600);
+  --text-accent-subtle-title: var(--primary900);
+  --text-accent-subtle-body: var(--primary700);
+  --icon-accent-subtle: var(--primary500);
+  --text-link: var(--primary500);
+
+  /* Size scale — single source of truth for spacing and radius values */
+  --sizeNull: 0;
+  --size1: 1px;
+  --size2: 2px;
+  --size4: 4px;
+  --size8: 8px;
+  --size12: 12px;
+  --size16: 16px;
+  --size20: 20px;
+  --size24: 24px;
+  --size32: 32px;
+  --size40: 40px;
+  --size48: 48px;
+  --size56: 56px;
+  --size64: 64px;
+  --size72: 72px;
+  --size80: 80px;
+  --size96: 96px;
+  --size128: 128px;
+  --size160: 160px;
+  --size192: 192px;
+  --size224: 224px;
+  --size256: 256px;
+  --size320: 320px;
+  --size384: 384px;
+  --size512: 512px;
+  --size640: 640px;
+  --size768: 768px;
+  --sizeMax: 999px;
+
+  /* Spacing — aliases of the size scale */
+  --spacingNull: var(--sizeNull);
+  --spacing4xs: var(--size2);
+  --spacing3xs: var(--size4);
+  --spacing2xs: var(--size8);
+  --spacingXs: var(--size12);
+  --spacingSm: var(--size16);
+  --spacingMd: var(--size20);
+  --spacingLg: var(--size24);
+  --spacingXl: var(--size32);
+  --spacing2xl: var(--size40);
+  --spacing3xl: var(--size48);
+  --spacing4xl: var(--size56);
+  --spacing5xl: var(--size64);
+  --spacing6xl: var(--size80);
+  --spacing7xl: var(--size96);
+  --spacing8xl: var(--size128);
+  --spacing9xl: var(--size256);
+  --spacingMax: var(--sizeMax);
+
+  /* Corner radius scale — aliases of the size scale (named "border" on the site) */
+  --borderNull: var(--sizeNull);
+  --border4xs: var(--size2);
+  --border3xs: var(--size4);
+  --border2xs: var(--size8);
+  --borderXs: var(--size12);
+  --borderSm: var(--size16);
+  --borderMd: var(--size20);
+  --borderLg: var(--size24);
+  --borderXl: var(--size32);
+  --border2xl: var(--size40);
+  --border3xl: var(--size48);
+  --border4xl: var(--size56);
+  --borderFull: var(--sizeMax);
+
+  /* Type styles — `font` shorthands: font: var(--bodySm) */
+  --displayXl: 700 112px/120px Manrope;
+  --displayLg: 700 56px/64px Manrope;
+  --displayMd: 700 48px/56px Manrope;
+  --headingLg: 600 40px/56px Inter;
+  --headingMd: 600 32px/42px Inter;
+  --headingSm: 600 24px/34px Inter;
+  --titleMd: 600 20px/28px Inter;
+  --titleSm: 600 18px/25px Inter;
+  --subtitleMd: 600 16px/22px Inter;
+  --subtitleSm: 600 14px/20px Inter;
+  --bodyLg: 400 20px/28px Inter;
+  --bodyMd: 400 16px/22px Inter;
+  --bodySm: 400 14px/20px Inter;
+  --labelMd: 500 14px/20px Inter;
+  --labelSm: 500 12px/17px Inter;
+  --captionMd: 400 12px/16px Inter;
+  --captionSm: 400 10px/14px Inter;
+  --overlineBase: 500 11px/15px Inter;
+
+  /* Elevation */
+  --level1: 0 2px 12px 0 #1c1e260a;
+  --level2: 0 4px 8px 0 #1c1e260f;
+  --level3: 0 8px 12px 0 #1c1e2614;
+  --level4: 0 12px 16px 0 #1c1e261f;
+}
+
+/* Dark theme: neutrals invert, so semantic tokens built on them flip automatically.
+   Activate with <html data-theme="dark">. */
+:root[data-theme="dark"] {
+  --neutral0: #101218;
+  --neutral25: #1c1e26;
+  --neutral50: #2a2c32;
+  --neutral100: #404145;
+  --neutral150: #565961;
+  --neutral200: #70727b;
+  --neutral300: #898c94;
+  --neutral400: #a2a6ae;
+  --neutral500: #bcc0c7;
+  --neutral600: #d2d5dc;
+  --neutral700: #e1e4ea;
+  --neutral800: #eff1f8;
+  --neutral900: #f8f9fd;
+  --neutral950: #fff;
+  --surface-raised: var(--neutral25);
+  --surface-accent-subtle: var(--neutral50);
+  --surface-accent-subtle-border: #ffffff14;
+  --text-accent-subtle-label: var(--info300);
+  --text-accent-subtle-title: var(--neutral900);
+  --text-accent-subtle-body: var(--neutral500);
+  --icon-accent-subtle: var(--primary200);
+  --text-link: var(--primary300);
+  --level1: 0 2px 12px 0 #ffffff1a;
+  --level2: 0 4px 8px 0 #ffffff29;
+  --level3: 0 8px 12px 0 #ffffff38;
+  --level4: 0 12px 16px 0 #ffffff4d;
 }
