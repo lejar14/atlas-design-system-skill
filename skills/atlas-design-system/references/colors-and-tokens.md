@@ -1,12 +1,6 @@
 # Atlas — Color & Token Reference
 
-Source: https://atlas-design-system-theta.vercel.app/foundations/color (fetched live). This is the
-full primitive + semantic color set as published on the site. CSS variable names for the primitives
-(e.g. `--primary500`) are confirmed from Atlas's own Button source code. CSS variable names for the
-*semantic* aliases (surface/typography/border/icon) are **not** exposed anywhere in the static site —
-only their dot-notation names and resolved hex are shown. Treat the semantic var names in this file as
-a reasonable inferred convention (`--surface-*`, `--text-*`, etc.), and if the user has the actual
-`src/styles/tokens.css` from the Atlas repo, prefer that file's real variable names over this guess.
+Source: https://atlas-design-system-theta.vercel.app/foundations/color (fetched live). The full primitive and semantic color set as published on the site. The exact CSS variable names (primitives such as `--primary500` and the semantic `--surface-*`, `--text-*`, `--border-*`, `--icon-*` aliases) are in `../assets/tokens.css`, extracted from the live site CSS: when a name here and that file differ, the file wins.
 
 ## Neutral
 
