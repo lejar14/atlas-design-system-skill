@@ -30,7 +30,8 @@ Stack: Next.js App Router, TypeScript, Tailwind v4, `clsx` + `tailwind-merge`, `
 Input/Textarea, Dropdown, Checkbox, Radio, Switch, Tooltip, Alert/Toast, Chip, Badge, Breadcrumbs, Date Picker, Progress, Spinner, Uploader: build them from the Button recipe and tell the user they are Atlas-style, not official.
 
 - Props: `color` (brand|neutral|danger|warning|success), `variant` (primary|secondary|tertiary = filled|outline|text), `size` (sm|md|lg).
-- Filled: bg `{c}500`, hover `600`, active `700`, ring `300`, white text (warning: `neutral900` text). Outline: border `{c}500`, text `{c}600`, hover bg `{c}50`, active `{c}100`. Text: as outline without border.
+- Brand (uses `primary`), danger, warning, success: filled bg `{c}500`, hover `600`, active `700`, ring `300`, white text (warning too). Outline: border `{c}500`, text `{c}600`, hover bg `{c}50`, active `{c}100`. Text: as outline without border.
+- Neutral: filled bg `neutral900`, hover `800`, active `950`, ring `400`, white text. Outline: border `neutral300`, text `neutral900`, hover bg `50`, active `100`. Text: as outline without border.
 - Size: sm `px-3 py-1.5 text-sm` (icon 14), md `px-4 py-2 text-sm` (16), lg `px-5 py-2.5 text-base` (18).
 - Shape: `rounded-[var(--radius-md)]`, `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2`, `disabled:pointer-events-none disabled:opacity-40`, `cn()`, icons as component props.
 - Errors/validation use danger, success states use success; form fields share one height per size.

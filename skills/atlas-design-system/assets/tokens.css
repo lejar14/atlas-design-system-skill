@@ -9,6 +9,8 @@
  */
 
 :root {
+  --background: var(--neutral0);
+  --foreground: var(--neutral900);
   /* Neutral */
   --neutral950: #101218;
   --neutral900: #1C1E26;
