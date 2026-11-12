@@ -1,18 +1,42 @@
 # Atlas Design System skill
 
-Agent skill for [Atlas](https://atlas-design-system-theta.vercel.app), the ASYST design system (PT. Aero Systems Indonesia). It gives coding agents (Claude Code, Cursor, Codex, omp and others) Atlas's tokens, typography, dark mode and component APIs, so the UI they generate stays consistent with Atlas.
+Teaches AI coding agents (Claude Code, Cursor, Codex, Windsurf, Gemini, Copilot...) to build UI in [Atlas](https://atlas-design-system-theta.vercel.app), the ASYST design system: colors, type, spacing, dark mode, the official Button, and the style for every other component.
 
-## Install
+## Install (one line, open a terminal in your project folder)
 
 ```bash
 npx skills add lejar14/atlas-design-system-skill
 ```
 
-Add `-g` to install for every project, or `-a claude-code` to choose the agent. Update later with `npx skills update`.
+Needs Node 18+. It asks which agent you use; press Enter. Without Node:
 
-## Contents
+```bash
+curl -fsSL https://raw.githubusercontent.com/lejar14/atlas-design-system-skill/main/install.sh | sh
+```
 
-- `skills/atlas-design-system/SKILL.md`: rules the agent follows
-- `assets/tokens.css`: Atlas tokens (light + dark), copied from the live site
-- `assets/button.tsx`, `assets/utils.ts`: official Button and `cn()`
-- `references/`: color tables, type scale, spacing/radius/elevation, usage API for all 15 components
+Add `-g` after `sh -s --` for all your projects instead of this one.
+
+## Use
+
+Just ask your agent in plain words. It sets up the tokens on first use.
+
+- "Bikin halaman login pakai Atlas"
+- "Buatkan dashboard admin dengan design system Atlas"
+- "Tambah komponen badge dan alert sesuai Atlas"
+
+## What is included
+
+| File | What |
+|---|---|
+| `skills/atlas-design-system/SKILL.md` | Short rules the agent always reads |
+| `assets/tokens.css` | All Atlas variables (color, type, spacing, dark theme) |
+| `assets/button.tsx`, `utils.ts` | Official Button and the `cn()` helper |
+| `references/colors-and-tokens.md` | Full color tables, read only when needed |
+
+Only Button has official source on the Atlas site. The other components are built by the agent in the same style.
+
+## Update the skill (maintainers)
+
+1. Edit files in `skills/atlas-design-system/`. If the site changed, re-extract tokens from its CSS (`/_next/static/chunks/*.css`) into `tokens.css` and `colors-and-tokens.md`.
+2. `git add -A && git commit -m "What changed and why" && git push`
+3. Users run `npx skills update` (or the install command again).
