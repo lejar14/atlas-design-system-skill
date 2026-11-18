@@ -25,6 +25,7 @@ const rules = [
 const rawControl = /<(button|input|textarea|select)([\s>/]|$)/;
 
 const out = new Set();
+const isVite = existsSync(join(root, "vite.config.ts")) || existsSync(join(root, "vite.config.js"));
 const cssFiles = [];
 // Token names that exist: the package's tokens.css plus any custom property the project defines itself.
 const tokensPath = join(root, "node_modules/@asyst/atlas/dist/tokens.css");
@@ -35,10 +36,12 @@ for (const f of files) {
 }
 for (const f of files) {
   const rel = relative(root, f);
-  if (f.endsWith(".html")) out.add(`${rel}: [static-html] deliverable must be a Next.js page, not a static HTML file`);
+  if (f.endsWith(".html") && !(isVite && rel === "index.html")) out.add(`${rel}: [static-html] deliverable must be a real page (Next.js or Vite route), not a static HTML file`);
   const text = readFileSync(f, "utf8");
   if (f.endsWith(".css")) cssFiles.push(text);
-  text.split("\n").forEach((raw, i) => {
+  const lines = text.split("\n");
+  lines.forEach((raw, i) => {
+    if (raw.includes("atlas-ignore") || (lines[i - 1] ?? "").includes("atlas-ignore")) return;
     const line = raw.replace(/href=\{?["'][^"']*["']/g, ""); // "#section" anchors are not colors
     const hit = (rule) => out.add(`${rel}:${i + 1}: [${rule}] ${raw.trim().slice(0, 160)}`);
     for (const [name, re] of rules) if (re.test(line)) hit(name);
@@ -53,7 +56,7 @@ if (!existsSync(pkgPath)) {
   out.add("package.json: [setup] not found here; run from the project root (the folder with package.json)");
 } else {
   const pkg = readFileSync(pkgPath, "utf8");
-  for (const dep of ["next", "tailwindcss", "@asyst/atlas"])
+  for (const dep of [isVite ? "vite" : "next", "tailwindcss", "@asyst/atlas"])
     if (!pkg.includes(`"${dep}"`)) out.add(`package.json: [setup] dependency ${dep} missing (see SKILL.md)`);
 }
 const atlas = join(root, "node_modules/@asyst/atlas");

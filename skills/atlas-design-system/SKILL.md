@@ -5,14 +5,14 @@ description: "Atlas, the ASYST design system (PT. Aero Systems Indonesia). Use f
 
 # Atlas (ASYST design system)
 
-Atlas is a package, `@asyst/atlas`. Components and tokens live there. Import them; never copy, rewrite or restyle a component that the package already has. If the package lacks a component the task needs, tell the user it must be added to the Atlas repo first. Do not invent an Atlas rule or build a lookalike.
+Atlas is a package, `@asyst/atlas`. Components and tokens live there. Import them; never copy, rewrite or restyle a component that the package already has. Where Atlas has a component, always use it. Where it has none, see "When Atlas has no answer" below: use your own judgment for layout and structure, and flag the larger gaps for a UI/UX discussion. Never invent an Atlas rule, and never pull in another component library (shadcn, MUI, ...) for something Atlas could be composed to do.
 
 ## Setup (once per project; skip what already exists)
 
-Needs Next.js (App Router), TypeScript and Tailwind CSS v4. Mockups and demos are real pages under `src/app/`, not static HTML. Run everything from the project root (the folder with `package.json`).
+Needs React, TypeScript and Tailwind CSS v4, in Next.js (App Router) or Vite. Mockups and demos are real pages (`src/app/` in Next.js, a route in Vite), not static HTML. Run everything from the project root (the folder with `package.json`).
 
-1. Install from GitHub (no npm registry): `npm install github:lejar14/atlas-design-system#release`, then pin to the installed version: read `version` in `node_modules/@asyst/atlas/package.json` and reinstall with `#semver:^<that version>`. The import name is `@asyst/atlas`. The package's own `README.md` has the same steps. A private repo needs git access (SSH key or token). If install fails because no `release` branch or `v*` tag exists, stop and tell the user the package has not been released yet.
-2. Global CSS, in this order. The `@source` line is mandatory: without it Tailwind v4 does not read the package's classes and everything renders unstyled with no error. The path is relative to the CSS file: `../node_modules/...` from `app/globals.css`, `../../node_modules/...` from `src/app/globals.css`.
+1. Install from GitHub (no npm registry): `npm install github:lejar14/atlas-design-system#release`, then pin to the installed version: read `version` in `node_modules/@asyst/atlas/package.json` and reinstall with `#semver:^<that version>`. The import name is `@asyst/atlas`. The package's own `README.md` has the same steps. npm 12 blocks git and remote dependencies by default; if the install is refused, add `--allow-git=all --allow-remote=all`. A private repo needs git access (SSH key or token). If install fails because no `release` branch or `v*` tag exists, stop and tell the user the package has not been released yet.
+2. Global CSS, in this order. The `@source` line is mandatory: without it Tailwind v4 does not read the package's classes and everything renders unstyled with no error. The path is relative to the CSS file: `../node_modules/...` from `app/globals.css` or `src/index.css`, `../../node_modules/...` from `src/app/globals.css`.
    ```css
    @import "@asyst/atlas/tokens.css";
    @import "tailwindcss";
@@ -24,10 +24,22 @@ Needs Next.js (App Router), TypeScript and Tailwind CSS v4. Mockups and demos ar
 ## Workflow for every task
 
 1. Read `node_modules/@asyst/atlas/dist/llms.txt`. It lists every component with its props, valid values and an example, for the installed version. It is the authority; do not guess props.
-2. Build with `import { Button, Input, ... } from "@asyst/atlas"`. Never use raw `<button>`, `<input>`, `<textarea>` or `<select>`. Icon props take a lucide-react component (`leadingIcon={Plus}`). Use the package's `cn()` for class merging. Interactive components are client components; a Server Component page that passes event handlers (`onClick`, `onChange`) must be marked `"use client"`. Some components need a provider: wrap the app in `<Toaster>` before calling `useToast()`, and in `TooltipProvider` for tooltips (see `llms.txt`).
+2. Build with `import { Button, Input, ... } from "@asyst/atlas"`. Never use raw `<button>`, `<input>`, `<textarea>` or `<select>`. Icon props take a lucide-react component (`leadingIcon={Plus}`). Use the package's `cn()` for class merging. In Next.js, interactive components are client components; a Server Component page that passes event handlers (`onClick`, `onChange`) must be marked `"use client"`. Some components need a provider: wrap the app in `<Toaster>` before calling `useToast()`, and in `TooltipProvider` for tooltips (see `llms.txt`).
+   Links that look like buttons: Atlas `Button` has no `asChild` or `href`. Put the classes on the link: `<Link to="/x" className={buttonClasses({ variant: "secondary", size: "lg" })}>`. Never wrap a link in a `<button>`.
 3. For layout and anything outside the components, use tokens as CSS variables (`var(--primary500)`, `var(--surface-raised)`, `var(--foreground)`, `[font:var(--bodySm)]`, spacing `--spacing*`). Use only names that exist in `tokens.css`; grep it before using one. Never hex, `rgb()` or Tailwind palette colors (`bg-blue-500`).
 4. Token names and values (colors, type, spacing, radius, levels) come from `node_modules/@asyst/atlas/dist/tokens.css`, the only source; never take them from memory. For foundations guidance (typography, sizing, elevation, icons, avatar) read the matching page in `references/foundations/`. Site history: `references/changelog.md`.
 5. Run the checklist below.
+
+## When Atlas has no answer
+
+Atlas is small. Work out which case you are in before building:
+
+1. **A component exists** (see `llms.txt`): use it, no exceptions. Map the need onto it first: a selectable `Chip` for tabs or filters, `DropdownMenu` for a select-like menu, `Switch`, `Progress`, `Spinner`, `Tooltip`.
+2. **Layout and structure** (page grid, sections, cards, panels, tables, empty states, spacing, hierarchy): not governed by Atlas rules, so decide it yourself with good UI/UX sense. Build it with plain elements and Atlas tokens only (`--surface-raised`, `--neutral200`, `--level1`, type and spacing tokens). Do not stop to ask for these.
+3. **A missing interactive component** (dialog/modal, select, date-time or table behavior, tabs, toasts beyond `Toaster`): build the smallest thing that works with Atlas tokens and accessible markup, and list it under "Needs UI/UX decision" in the final message. If the same missing pattern appears in three or more places, stop and raise it before building more: it probably belongs in the Atlas repo.
+4. **A brand-level choice** (a new color, gradient, illustration, font, dark-mode behavior, anything that contradicts a token): do not decide alone. Use the closest token, and list it under "Needs UI/UX decision".
+
+Data-viz colors (charts) may be hex when no token fits; mark that line `atlas-ignore` and say so in the final message.
 
 ## Foundations in short
 
@@ -39,9 +51,9 @@ Needs Next.js (App Router), TypeScript and Tailwind CSS v4. Mockups and demos ar
 
 ## Before you say it is done
 
-1. Run `node <this skill's folder>/scripts/check.mjs` from the project root. It checks that the package is installed with its `llms.txt` and wired into the CSS (tokens import and `@source`), and flags raw controls, hex or palette colors, `var(--x)` names missing from `tokens.css`, emoji icons and static HTML. Fix everything until it prints `OK`.
+1. Run `node <this skill's folder>/scripts/check.mjs` from the project root. It checks that the package is installed with its `llms.txt` and wired into the CSS (tokens import and `@source`), and flags raw controls, hex or palette colors, `var(--x)` names missing from `tokens.css`, emoji icons and static HTML. Fix everything until it prints `OK`. A line with `atlas-ignore` (same line or the line above) is skipped; use it only for data-viz hex or a documented UI/UX exception, never to silence a real violation.
 2. By hand: one Brand Primary per view, real links instead of `href="#"`, visible focus on every interactive element, every prop and value used appears in `llms.txt`.
-3. In the final message say that the check passed and list anything you could not satisfy, with the reason. Never claim "follows Atlas" without that.
+3. In the final message say that the check passed, then list: (a) anything you could not satisfy, with the reason; (b) "Needs UI/UX decision": every case 3 or 4 from "When Atlas has no answer". Never claim "follows Atlas" without that.
 
 ## Updating
 
