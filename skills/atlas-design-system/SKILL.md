@@ -11,7 +11,7 @@ Atlas is a package, `@asyst/atlas`. Components and tokens live there. Import the
 
 Needs Next.js (App Router), TypeScript and Tailwind CSS v4. Mockups and demos are real pages under `src/app/`, not static HTML. Run everything from the project root (the folder with `package.json`).
 
-1. Install from GitHub (no npm registry): `npm install github:androsap/atlas-design-system#release`, then pin to the installed version: read `version` in `node_modules/@asyst/atlas/package.json` and reinstall with `#semver:^<that version>`. The import name is `@asyst/atlas`. The package's own `README.md` has the same steps. A private repo needs git access (SSH key or token). If install fails because no `release` branch or `v*` tag exists, stop and tell the user the package has not been released yet.
+1. Install from GitHub (no npm registry): `npm install github:lejar14/atlas-design-system#release`, then pin to the installed version: read `version` in `node_modules/@asyst/atlas/package.json` and reinstall with `#semver:^<that version>`. The import name is `@asyst/atlas`. The package's own `README.md` has the same steps. A private repo needs git access (SSH key or token). If install fails because no `release` branch or `v*` tag exists, stop and tell the user the package has not been released yet.
 2. Global CSS, in this order. The `@source` line is mandatory: without it Tailwind v4 does not read the package's classes and everything renders unstyled with no error. The path is relative to the CSS file: `../node_modules/...` from `app/globals.css`, `../../node_modules/...` from `src/app/globals.css`.
    ```css
    @import "@asyst/atlas/tokens.css";
@@ -45,4 +45,4 @@ Needs Next.js (App Router), TypeScript and Tailwind CSS v4. Mockups and demos ar
 
 ## Updating
 
-The skill holds instructions only. To get new components or fixes, bump the package (`npm install github:androsap/atlas-design-system#semver:^X.Y.Z`); `llms.txt` updates with it. To get new instructions, rerun `npx skills add lejar14/atlas-design-system-skill`. While the package is 0.x, minor bumps can break; read its CHANGELOG before bumping.
+The skill holds instructions only. To get new components or fixes, bump the package (`npm install github:lejar14/atlas-design-system#semver:^X.Y.Z`); `llms.txt` updates with it. To get new instructions, rerun `npx skills add lejar14/atlas-design-system-skill`. While the package is 0.x, minor bumps can break; read its CHANGELOG before bumping.

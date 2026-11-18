@@ -32,7 +32,7 @@ Just ask your agent in plain words. It sets up the tokens on first use.
 | `references/foundations/*.md`, `changelog.md` | Typography, sizing, elevation, icons, avatar, site changelog |
 | `scripts/check.mjs` | Node checker (works on Linux, macOS, Windows) run before finishing: package installed and wired, raw controls, hex and palette colors, unknown token names |
 
-No component code lives here. Components, tokens and `llms.txt` ship in the package `@asyst/atlas` (repo `androsap/atlas-design-system`), installed from GitHub: `npm i github:androsap/atlas-design-system#semver:^0.1.0`.
+No component code lives here. Components, tokens and `llms.txt` ship in the package `@asyst/atlas` (repo `lejar14/atlas-design-system`), installed from GitHub: `npm i github:lejar14/atlas-design-system#semver:^0.1.0`.
 
 ## Update
 
