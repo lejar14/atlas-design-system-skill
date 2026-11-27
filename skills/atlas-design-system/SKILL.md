@@ -11,7 +11,14 @@ Atlas is a package, `@asyst/atlas`. Import its components and tokens; never copy
 
 Needs React, TypeScript, Tailwind CSS v4, in Next.js (App Router) or Vite. Run from the project root.
 
-1. Install: `npm install github:lejar14/atlas-design-system#semver:^0.2.0` (the import name is `@asyst/atlas`; the package README has the same steps). If install fails (no matching tag, private repo, npm refusing git dependencies), stop and tell the user; do not loosen npm security flags.
+1. Install from GitHub Packages, aliased so the import name is `@asyst/atlas`:
+   - `.npmrc` in the project root (create or append; keep `${GITHUB_TOKEN}` literal, never paste a token):
+     ```ini
+     @lejar14:registry=https://npm.pkg.github.com
+     //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+     ```
+   - `npm install @asyst/atlas@npm:@lejar14/atlas@^0.2.0`
+   - If it fails with 401/403, `GITHUB_TOKEN` is missing: ask the user for a classic token with `read:packages` set as that env var, or fall back to `npm install github:lejar14/atlas-design-system#semver:^0.2.0`. Do not loosen npm security flags.
 2. Global CSS, in this order. `@source` is mandatory or nothing is styled, with no error. Path is relative to the CSS file.
    ```css
    @import "@asyst/atlas/tokens.css";
