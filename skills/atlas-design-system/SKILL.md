@@ -11,7 +11,7 @@ Import components and tokens from `@asyst/atlas`. Never copy, rewrite or restyle
 
 Needs React, TypeScript, Tailwind v4, Next.js (App Router) or Vite.
 
-1. `npm install github:lejar14/atlas-design-system#semver:^0.2.0` (import name `@asyst/atlas`). On failure, stop and tell the user; never loosen npm security flags.
+1. `npm install github:lejar14/atlas-design-system#semver:^0.3.0` (import name `@asyst/atlas`). On failure, stop and tell the user; never loosen npm security flags.
 2. Global CSS, in this order (`@source` path is relative to the CSS file; without it nothing is styled, silently):
    ```css
    @import "@asyst/atlas/tokens.css";
@@ -24,7 +24,7 @@ Needs React, TypeScript, Tailwind v4, Next.js (App Router) or Vite.
 ## Build
 
 1. Read `node_modules/@asyst/atlas/dist/llms.txt` first: the authority on components, props and values. Do not guess props.
-2. `import { Button, Input, ... } from "@asyst/atlas"`. No raw `<button>`, `<input>`, `<textarea>`, `<select>`. Icon props take lucide components (`leadingIcon={Plus}`). Use the package's `cn()`. `<Toaster>` for `useToast()`, `TooltipProvider` for tooltips. Next.js event handlers need `"use client"`.
+2. `import { Button, Input, ... } from "@asyst/atlas"`. No raw `<button>`, `<input>`, `<textarea>`, `<select>`. Icon props take icon components (`leadingIcon={Plus}`); for lucide icons, `npm install lucide-react` first (Atlas does not ship it). Use the package's `cn()`. `<Toaster>` for `useToast()`, `TooltipProvider` for tooltips. Next.js event handlers need `"use client"`.
    - Link as button: `<Link className={buttonClasses({ variant: "secondary" })}>`.
    - Toggles, tabs, filters, removable tags: `Chip`.
    - Labels: `label`/`helperText`/`error` props. Hints: `Tooltip`, not `title=`. Loading: `Spinner`/`Progress`. Dates: `DatePicker`.
