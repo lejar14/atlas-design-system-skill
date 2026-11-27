@@ -49,4 +49,4 @@ Data-viz colors may be hex when no token fits; mark that line `atlas-ignore` and
 
 ## Updating
 
-Instructions only live here. New components or fixes come from bumping the package (read its CHANGELOG first; 0.x minors can break); `llms.txt` updates with it. New instructions: rerun `npx skills add lejar14/atlas-design-system-skill`.
+Instructions only live here. New components or fixes come from bumping the package (read its CHANGELOG first; 0.x minors can break); `llms.txt` updates with it. New instructions: `/plugin marketplace update atlas` (Claude Code plugin) or rerun `npx skills add lejar14/atlas-design-system-skill`.

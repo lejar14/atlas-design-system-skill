@@ -1,0 +1,9 @@
+{
+  "name": "atlas-design-system",
+  "version": "0.3.0",
+  "description": "Build UI with Atlas, the ASYST design system, by importing components from @asyst/atlas.",
+  "author": { "name": "lejar14" },
+  "repository": "https://github.com/lejar14/atlas-design-system-skill",
+  "license": "UNLICENSED",
+  "keywords": ["design-system", "atlas", "asyst", "react", "tailwind"]
+}

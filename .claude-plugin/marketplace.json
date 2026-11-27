@@ -1,0 +1,16 @@
+{
+  "name": "atlas",
+  "owner": {
+    "name": "lejar14"
+  },
+  "metadata": {
+    "description": "Atlas (ASYST) design system for Claude Code."
+  },
+  "plugins": [
+    {
+      "name": "atlas-design-system",
+      "source": "./",
+      "description": "Build UI with Atlas, the ASYST design system, by importing components from @asyst/atlas."
+    }
+  ]
+}
